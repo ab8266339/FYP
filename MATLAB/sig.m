@@ -47,16 +47,16 @@ for r = 1:length(t)
     % loop
 
     ys(r) = cos(2*pi*(fs+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier
-    yc(r) = cos(2*pi*(fsc+Dc*ys(r))*t(r)); %carrier
-    idata(r)=sin(ys(r));
-    qdata(r)=cos(ys(r));
+    yc(r) = cos(2*pi*(fc+Dc*ys(r))*t(r)); %carrier
+    idata(r)=sin(2*pi*ys(r));
+    qdata(r)=cos(2*pi*ys(r));
     IQDatas(r)=idata(r)+j.*qdata(r);
     IQDatac(r)=sin(yc(r))+j.*cos(yc(r));
 end
 
 figure(2)
 plot(t,abs(fft(ys)))
-xlabel('Frequency')
+xlabel('Frequency bins')
 ylabel('Amplitude')
 title('FM-FFT subcarrier Spectrum')
 figure(3)
