@@ -1,5 +1,5 @@
 % Reference Signal
-fs = 108e7;
+fs = 10e7;
 t = 0:1/fs:0.1;
 % 
 % x1 = sin(2*pi*30*t);
@@ -37,7 +37,7 @@ qdata = [];
 IQData=[]; 
 Dc = 5e3; %Deviation for the second carrier
 yc = [];
-fc2=108e6;
+fc2=10e6;
 idatac = [];
 qdatac = [];
 IQDatac=[]; 
@@ -52,7 +52,7 @@ for r = 1:length(t)
     IQData(r)=idata(r)+j.*qdata(r);
     %IQDatac(r)=sin(2*pi*yc(r))+j.*cos(2*pi*yc(r));
 end
-
+IQdataLowpass=doFilter(IQData);
 figure(2)
 plot(t,abs(fft(ys)))
 xlabel('Frequency bins')
@@ -75,8 +75,8 @@ ylabel('Amplitude')
 title('FM-FFT carrier Spectrum')
 %wave = [real(IQDatas);imag(IQDatas)];
 % wave = wave(:)';    % transpose the waveform
-
-
+figure(6)
+plot(t,abs(fft(IQdataLowpass)))
 % % % % % % % % % 
 % Carrier
 % figure(5)
