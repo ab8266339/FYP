@@ -51,7 +51,7 @@ for r = 1:length(t)
     idata(r)=sin(2*pi*ys(r));
     qdata(r)=cos(2*pi*ys(r));
     IQDatas(r)=idata(r)+j.*qdata(r);
-    IQDatac(r)=sin(yc(r))+j.*cos(yc(r));
+    IQDatac(r)=sin(2*pi*yc(r))+j.*cos(2*pi*yc(r));
 end
 
 figure(2)
