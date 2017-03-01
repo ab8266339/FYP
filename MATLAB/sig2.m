@@ -1,5 +1,5 @@
 % Reference Signal
-fs = 10e7;
+fs = 5e6;
 t = 0:1/fs:0.1;
 % 
 % x1 = sin(2*pi*30*t);
@@ -37,7 +37,7 @@ qdata = [];
 IQData=[]; 
 Dc = 5e3; %Deviation for the second carrier
 yc = [];
-fc2=10e6;
+fc2=1e6;
 idatac = [];
 qdatac = [];
 IQDatac=[]; 
