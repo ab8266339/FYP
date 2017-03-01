@@ -95,3 +95,6 @@ plot(t,abs(fft(IQdataLowpass)))
 % ylabel('Amplitude')
 % title('FM carrier(IQ)-FFT Spectrum')
 % wave = [real(IQDatac);imag(IQDatac)];
+
+fileID = fopen('iqdata.csv','w');
+fprintf(fileID,IQData);
