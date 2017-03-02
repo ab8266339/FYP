@@ -37,7 +37,7 @@ qdata = [];
 IQData=[]; 
 Dc = 5e3; %Deviation for the second carrier
 yc = [];
-fc2=1e6;
+fc2=1e6;%carrier frequency 1MHz
 idatac = [];
 qdatac = [];
 IQDatac=[]; 
@@ -46,7 +46,7 @@ for r = 1:length(t)
     % loop
 
     ys(r) = cos(2*pi*(fc1+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier
-    ys1(r) = sin(2*pi*t(r))*ys(r);%frequency mixer 30Hz and ys
+    ys1(r) = sin(2*pi*(t(r)+0.0083))*ys(r);%frequency mixer 30Hz with 90 degree phase shift and ys
     yc(r) = cos(2*pi*(fc2+Dc*ys1(r))*t(r)); %carrier
     idata(r)=sin(2*pi*fc2*t(r))*yc(r);
     qdata(r)=cos(2*pi*fc2*t(r))*yc(r);
@@ -97,5 +97,4 @@ plot(t,abs(fft(IQdataLowpass)))
 % title('FM carrier(IQ)-FFT Spectrum')
 % wave = [real(IQDatac);imag(IQDatac)];
 
-fileID = fopen('iqdata.csv','w');
-fprintf(fileID,IQData);
+csvwrite('IQdata.dat',IQdataLowpass) %for subcarrier at 9960Hz
