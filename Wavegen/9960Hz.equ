@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Equation>
+    <Name>User Equation</Name>
+    <Main>COS([W](9960+480*COS(30[W])))</Main>
+    <A />
+  </Equation>
+</NewDataSet>

@@ -31,6 +31,7 @@ t = 0:1/fs:0.1;
 
 fc1=9960;
 ys = [];
+ys1= [];
 D = 480;%Deviation for the first carrier
 idata = [];
 qdata = [];
@@ -45,8 +46,8 @@ for r = 1:length(t)
 
     % loop
 
-    ys(r) = cos(2*pi*(fc1+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier
-    ys1(r) = sin(2*pi*(t(r)+0.0083))*ys(r);%frequency mixer 30Hz with 90 degree phase shift and ys
+    ys(r) = cos(2*pi*(fc1+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier contain 180 phase-shifed ref sig
+    ys1(r) = sin(2*pi*(t(r)))*ys( r);%frequency mixer 30Hz ref with 180 degree phase shift and ys
     yc(r) = cos(2*pi*(fc2+Dc*ys1(r))*t(r)); %carrier
     idata(r)=sin(2*pi*fc2*t(r))*yc(r);
     qdata(r)=cos(2*pi*fc2*t(r))*yc(r);
