@@ -1,6 +1,6 @@
 % Reference Signal
 fs = 5e6;
-t = 0:1/fs:0.1;
+t = 0:1/fs:1;
 % 
 % x1 = sin(2*pi*30*t);
 % 
