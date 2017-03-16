@@ -11,7 +11,7 @@ ysm=fmmod(y,fc1,fs,D1);
 ysdm1=fmdemod(ysm,fc1,fs,D1);
 ycm=fmmod(ysm,fc2,fs,D2);
 ycdm=fmdemod(ycm,fc2,fs,D2);
-ysdm2=fmdemod(ycdm,fc1,fs,D1);
+ysdm2=fmdemod(ycdm,fc1,fs,D1,pi);
 % plot(t,y,'r',t,ysm,'b--');
 figure(1)
 

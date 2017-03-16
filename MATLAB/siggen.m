@@ -1,6 +1,7 @@
 % Reference Signal
-fs = 5e6;
-t = 0:1/fs:1;
+fs = 5e7;
+t = 0:1/fs:0.1;
+
 % 
 % x1 = sin(2*pi*30*t);
 % 
@@ -47,8 +48,8 @@ for r = 1:length(t)
     % loop
 
     ys(r) = cos(2*pi*(fc1+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier contain 180 phase-shifed ref sig
-    ys1(r) = sin(2*pi*(t(r)))*ys( r);%frequency mixer 30Hz ref with 180 degree phase shift and ys
-    yc(r) = cos(2*pi*(fc2+Dc*ys1(r))*t(r)); %carrier
+    ys1(r) = sin(2*pi*30*(t(r)))*ys(r);%frequency mixer 30Hz ref with 180 degree phase shift and ys
+    yc(r) = cos(2*pi*(fc2+Dc*ys1(r))*t(r)); %carrier 
     idata(r)=sin(2*pi*fc2*t(r))*yc(r);
     qdata(r)=cos(2*pi*fc2*t(r))*yc(r);
     IQData(r)=idata(r)+j.*qdata(r);
@@ -98,4 +99,7 @@ plot(t,abs(fft(IQdataLowpass)))
 % title('FM carrier(IQ)-FFT Spectrum')
 % wave = [real(IQDatac);imag(IQDatac)];
 
-csvwrite('IQdata.dat',IQdataLowpass) %for subcarrier at 9960Hz
+% csvwrite('IQdata.dat',IQdataLowpass) %for subcarrier at 996
+
+bin = fs/length(t);
+xaxis = 0:bin:bin*(length(t)-1);
