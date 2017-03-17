@@ -55,31 +55,36 @@ for r = 1:length(t)
     IQData(r)=idata(r)+j.*qdata(r);
     %IQDatac(r)=sin(2*pi*yc(r))+j.*cos(2*pi*yc(r));
 end
+bin = fs/length(t);
+xaxis = 0:bin:bin*(length(t)-1);
 IQdataLowpass=doFilter(IQData);
 figure(2)
-plot(t,abs(fft(ys)))
-xlabel('Frequency bins')
+plot(xaxis,abs(fft(ys)))
+xlabel('Frequency')
 ylabel('Amplitude')
 title('FM-FFT subcarrier Spectrum')
 figure(3)
  plot(t,real(IQData))
 xlabel('Time (sec)')
 ylabel('Amplitude')
-title('FM carrier sine Wave IQ from')
+title('FM carrier IQ wavefrom')
 figure(4)
-plot(t,abs(fft(IQData)))
+plot(xaxis,abs(fft(IQData)))
 xlabel('Frequency')
 ylabel('Amplitude')
 title('FM carrier(IQ)-FFT Spectrum')
 figure(5)
-plot(t,abs(fft(yc)))
-xlabel('Frequency bins')
+plot(xaxis,abs(fft(yc)))
+xlabel('Frequency')
 ylabel('Amplitude')
 title('FM-FFT carrier Spectrum')
 %wave = [real(IQDatas);imag(IQDatas)];
 % wave = wave(:)';    % transpose the waveform
 figure(6)
-plot(t,abs(fft(IQdataLowpass)))
+plot(xaxis,abs(fft(IQdataLowpass)))
+xlabel('Frequency')
+ylabel('Amplitude')
+title('FM-FFT IQdataLowpass Spectrum')
 % % % % % % % % % 
 % Carrier
 % figure(5)
@@ -101,5 +106,3 @@ plot(t,abs(fft(IQdataLowpass)))
 
 % csvwrite('IQdata.dat',IQdataLowpass) %for subcarrier at 996
 
-bin = fs/length(t);
-xaxis = 0:bin:bin*(length(t)-1);
