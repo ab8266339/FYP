@@ -1,7 +1,6 @@
 % Reference Signal
-fs = 5e7;
+fs = 1e6;
 t = 0:1/fs:0.1;
-
 % 
 % x1 = sin(2*pi*30*t);
 % 
@@ -46,30 +45,34 @@ IQDatac=[];
 for r = 1:length(t)
 
     % loop
-
-    ys(r) = cos(2*pi*(fc1+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier contain 180 phase-shifed ref sig
+    y(r) = sin(2*pi*30*t(r));
+    ys(r) = cos(2*pi*(fc1+D*sin(2*pi*30*t(r)))*t(r)); %subcarrier contain 180 phase-shifed ref sig
+    ys2(r) = cos(2*pi*fc1*t(r)+((D/fc1)*sin(2*pi*30*t(r))));
     ys1(r) = sin(2*pi*30*(t(r)))*ys(r);%frequency mixer 30Hz ref with 180 degree phase shift and ys
     yc(r) = cos(2*pi*(fc2+Dc*ys1(r))*t(r)); %carrier 
-    idata(r)=sin(2*pi*fc2*t(r))*yc(r);
-    qdata(r)=cos(2*pi*fc2*t(r))*yc(r);
-    IQData(r)=idata(r)+j.*qdata(r);
+    idatac(r)=sin(2*pi*fc2*t(r))*yc(r);
+    qdatac(r)=cos(2*pi*fc2*t(r))*yc(r);
+    IQDatac(r)=idatac(r)+j.*qdatac(r);
+    idatasc(r)=sin(2*pi*fc2*t(r))*ys(r);
+    qdatasc(r)=cos(2*pi*fc2*t(r))*ys(r);
+    IQDatasc(r)=idatasc(r)+j.*qdatasc(r);
     %IQDatac(r)=sin(2*pi*yc(r))+j.*cos(2*pi*yc(r));
 end
 bin = fs/length(t);
 xaxis = 0:bin:bin*(length(t)-1);
-IQdataLowpass=doFilter(IQData);
+IQdatacLowpass=doFilter(IQDatac);
 figure(2)
 plot(xaxis,abs(fft(ys)))
 xlabel('Frequency')
 ylabel('Amplitude')
 title('FM-FFT subcarrier Spectrum')
 figure(3)
- plot(t,real(IQData))
+ plot(t,real(IQDatac))
 xlabel('Time (sec)')
 ylabel('Amplitude')
 title('FM carrier IQ wavefrom')
 figure(4)
-plot(xaxis,abs(fft(IQData)))
+plot(xaxis,abs(fft(IQDatac)))
 xlabel('Frequency')
 ylabel('Amplitude')
 title('FM carrier(IQ)-FFT Spectrum')
@@ -81,7 +84,7 @@ title('FM-FFT carrier Spectrum')
 %wave = [real(IQDatas);imag(IQDatas)];
 % wave = wave(:)';    % transpose the waveform
 figure(6)
-plot(xaxis,abs(fft(IQdataLowpass)))
+plot(xaxis,abs(fft(IQdatacLowpass)))
 xlabel('Frequency')
 ylabel('Amplitude')
 title('FM-FFT IQdataLowpass Spectrum')

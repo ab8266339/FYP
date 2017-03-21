@@ -46,7 +46,7 @@ for r = 1:length(t)
     % loop
 
     ys(r) = cos(2*pi*(fc1+D*cos(2*pi*30*t(r)))*t(r)); %subcarrier
-    ys1(r) = sin(2*pi*t(r))*ys(r);%frequency mixer 30Hz and ys
+    ys1(r) = sin(2*pi*30*t(r))*ys(r);%frequency mixer 30Hz and ys
     yc(r) = cos(2*pi*(fc2+Dc*ys1(r))*t(r)); %carrier
     idata(r)=sin(2*pi*fc2*t(r))*yc(r);
     qdata(r)=cos(2*pi*fc2*t(r))*yc(r);
