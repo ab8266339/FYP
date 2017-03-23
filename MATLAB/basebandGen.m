@@ -33,5 +33,9 @@ ys2 = fmmod(y,fc1,fs,D);
 ysdm1=fmdemod(ys2,fc1,fs,D);
 % ys_normalized=ys/sqrt(sum(abs(ys.^2))/fs); 
 % IQdataLowpass=doFilter2(IQData);
-
-ydam=0.3*(2*pi*30*t-(30/180)*pi);
+yd=sin(2*pi*30*t+degtorad(90));
+ydmodam=ammod(yd,9960,fs);
+yddemodam=amdemod(ydmodam,9960,fs);
+yfinal=ys2+ydmodam;
+yfinalamdemod=amdemod(yfinal,9960,fs);
+yfinalfmdemod=fmdemod(yfinal,9960,fs,480);
