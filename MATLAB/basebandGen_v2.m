@@ -1,12 +1,13 @@
 %Baseband Generator
-fs = 1e6;%sampling rate
-t = 0:1/fs:0.1;%signal length
+fc1=1e4;%secondary carrier
+fs = 5e4;%sampling rate
+t = 0:1/fs:1;%signal length
 
 ys = [];
 D = 480;%Deviation for the first carrier
 Dc = 5e3; %Deviation for the second carrier
 yc = [];
-fc1=1e4;%secondary carrier
+
 fc2=1e6;%Primary carrier frequency 1MHz
 fcam=1e4;
 %%%%%%%%%IQ baseband%%%%%%%%
@@ -46,14 +47,20 @@ yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
 
 figure(1)
 plot(t,yfinalamdemod,t,yfinalfmdemod)
+legend('amdemod','fmdemod')
 figure(2)
 plot(t,yd,t,y)
+legend('directional','ref');
 figure(6)
 plot(t,yd,t,y,t,yfinalamdemod,t,yfinalfmdemod)
 legend('yd','y','yam','yfm');
+figure(7)
+plot(t,yd,t,y,t,yfinalamdemodfilter,t,yfinalfmdemodfilter)
+legend('yd','y','yamf','yfmf');
 % figure(3)
 % plot(t,yfinalamdemod,t,yfinalamdemodfilter);
 figure(5)
 plot(t,yfinalamdemod,t,yfinalamdemodfilter);
+legend('amdemod','amdemodfliter')
 figure(4)
-plot(t,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalamdemodfilter)))
+plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalamdemodfilter)))

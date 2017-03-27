@@ -13,7 +13,7 @@ if isempty(Hd)
     Fstop = 35;    % Stopband Frequency
     Apass = 1;     % Passband Ripple (dB)
     Astop = 60;    % Stopband Attenuation (dB)
-    Fs    = 5000;  % Sampling Frequency
+    Fs    = 5e4;  % Sampling Frequency
     
     h = fdesign.lowpass('fp,fst,ap,ast', Fpass, Fstop, Apass, Astop, Fs);
     
