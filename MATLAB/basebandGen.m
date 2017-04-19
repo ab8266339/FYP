@@ -38,16 +38,16 @@ ydmodam=ammod(yd,9960,fs);
 yddemodam=amdemod(ydmodam,9960,fs);
 yfinal=ys2+ydmodam;
 yfinalamdemod=amdemod(yfinal,9960,fs);
-yfinalamdemodfilter=filter30hz(yfinalamdemod);
-yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
+% yfinalamdemodfilter=filter30hz(yfinalamdemod);
+% yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
 yfinalfmdemod=fmdemod(yfinal,9960,fs,480);
 figure(1)
 plot(t,yfinalamdemod,t,yfinalfmdemod)
 figure(2)
 plot(t,yd,t,y)
-figure(3)
-plot(t,yfinalamdemod,t,yfinalamdemodfilter);
-figure(5)
-plot(t,yfinalamdemodfilter,t,yfinalfmdemodfilter);
+% figure(3)
+% plot(t,yfinalamdemod,t,yfinalamdemodfilter);
+% figure(5)
+% plot(t,yfinalamdemodfilter,t,yfinalfmdemodfilter);
 % figure(4)
 % plot(t,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalamdemodfilter)))
