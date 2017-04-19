@@ -9,7 +9,7 @@ Dc = 5e3; %Deviation for the second carrier
 yc = [];
 
 fc2=1e6;%Primary carrier frequency 1MHz (Not in use)
-fcam=1e4;
+fcam=1e3;
 %%%%%%%%%IQ baseband%%%%%%%%
 idata = [];
 qdata = [];
@@ -39,7 +39,7 @@ yd=sin(2*pi*30*t+degtorad(90));
 ydam=ammod(yd,fcam,fs);
 ydamdemod=amdemod(ydam,fcam,fs);
 yfinal=yofm+ydam;%yfinal is the final product after sinal mixing
-yfinal=doFilter9000hz(yfinal);
+% yfinal=doFilter9000hz(yfinal);
 yfinalamdemod=amdemod(yfinal,fcam,fs);
 yfinalfmdemod=fmdemod(yfinal,fcfm,fs,480);
 yfinalamdemodfilter=filter30hz(yfinalamdemod);
