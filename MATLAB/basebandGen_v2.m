@@ -6,9 +6,9 @@ ys = [];
 D = 480;%Deviation for the first carrier
 Dc = 5e3; %Deviation for the second carrier
 yc = [];
-fc1=1e4;%secondary carrier
+fc1=9000;%secondary carrier
 fc2=1e6;%Primary carrier frequency 1MHz
-fcam=1e4;
+fcam=9000;
 %%%%%%%%%IQ baseband%%%%%%%%
 idata = [];
 qdata = [];
@@ -27,30 +27,33 @@ for r = 1:length(t)
     IQData(r)=idata(r)+j.*qdata(r);
 
     %IQDatac(r)=sin(2*pi*yc(r))+j.*cos(2*pi*yc(r));
-end
+end%for explanation
 %%ys1 = y1.*ys;%frequency mixer 30Hz ref with 180 degree phase shift and ys
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ys_normalized=ys/sqrt(sum(abs(ys.^2))/fs); 
 % IQdataLowpass=doFilter2(IQData);
+
+%%%%Signal Generation%%%%%%%%%%%%
 yofm = fmmod(y,fc1,fs,D);
 yofmd=fmdemod(yofm,fc1,fs,D);
 yd=sin(2*pi*30*t+degtorad(90));
 ydam=ammod(yd,fcam,fs);
 ydamd=amdemod(ydam,fcam,fs);
 yfinal=yofm+ydam;
-yfinal=doFilter9000hz(yfinal);
+yfinal=doFilter9000hz(yfinal);%LowPass filtered 
 yfinalamdemod=amdemod(yfinal,fcam,fs);
 yfinalfmdemod=fmdemod(yfinal,fc1,fs,480);
-yfinalamdemodfilter=filter30hz(yfinalamdemod);
-yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
-
+yfinalamdemodfilter=filter30hz(yfinalamdemod);%LowPass filtered 
+yfinalfmdemodfilter=filter30hz(yfinalfmdemod);%LowPass filtered 
+%%%%%%%%%%%%Ploting%%%%%%%%%
 figure(1)
 plot(t,yfinalamdemod,t,yfinalfmdemod)
+title('am demod and fm demod')
 figure(2)
 plot(t,yd,t,y)
 figure(6)
 plot(t,yd,t,y,t,yfinalamdemod,t,yfinalfmdemod)
-legend('yd','y','yam','yfm');
+legend('yd','y','yamdemod','yfmdemod');
 % figure(3)
 % plot(t,yfinalamdemod,t,yfinalamdemodfilter);
 figure(5)
