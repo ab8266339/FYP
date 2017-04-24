@@ -2,7 +2,7 @@
 clc
 clear all
 close all
-IP= '192.168.178.102';           % Input IP of your Red Pitaya...
+IP= '192.168.0.15';           % Input IP of your Red Pitaya...
 port = 5000;
 tcpipObj=tcpip(IP, port);
 
@@ -21,8 +21,8 @@ tcpipObj.Terminator = 'CR/LF';
 % Values of arbitrary waveform must be in range from -1 to 1.
 N=16383;
 t=0:(2*pi)/N:2*pi;
-x=sin(t)+1/3*sin(3*t);
-y=1/2*sin(t)+1/4*sin(4*t);
+x=fmmod(sin(2*pi*30*t),1e6,10e6,480);
+y=ammod(sin(2*pi*30*t+degtorad(90)),1e6,10e6)+fmmod(sin(2*pi*30*t),1e6,10e6,480);
 plot(t,x,t,y)
 grid on
 
