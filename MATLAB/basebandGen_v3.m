@@ -1,7 +1,7 @@
 %Baseband Generator
 fcfm=1e4;%secondary carrier used for fm
 fs = 5e4;%sampling rate
-t = 0:1/fs:1;%signal length
+t = 0:1/fs:0.1;%signal length
 
 ys = [];
 D = 480;%Deviation for the first carrier
