@@ -6,8 +6,8 @@ IP= '192.168.0.15';           % Input IP of your Red Pitaya...
 port = 5000;
 tcpipObj=tcpip(IP, port);
 
-tcpipObj.InputBufferSize = 20000*64;
-tcpipObj.OutputBufferSize = 20000*64;
+tcpipObj.InputBufferSize = 32768*64;
+tcpipObj.OutputBufferSize = 32768*64;
 flushinput(tcpipObj)
 flushoutput(tcpipObj)
 
@@ -17,15 +17,15 @@ fclose(x);
 fopen(tcpipObj);
 tcpipObj.Terminator = 'CR/LF';
 
-%% Calcualte arbitrary waveform with 16384 samples
+%% Calcualte arbitrary waveform with 16384*2 samples
 % Values of arbitrary waveform must be in range from -1 to 1.
 
-N=19999;
+N=32768;
 t=0:(2*pi)/N:2*pi;
 bin = N/length(t);
 xaxis = 0:bin:bin*(length(t)-1);
-x=fmmod(sin(2*pi*30*t),9960,N,480);
-y=ammod(sin(2*pi*30*t+degtorad(90)),1000,N);
+x=fmmod(sin(2*pi*30*t),1e4,5e4,480);
+y=ammod(sin(2*pi*30*t+degtorad(90)),1e4,5e4);
 plot(t,x,t,y)
 grid on
 
