@@ -47,7 +47,7 @@ fprintf(tcpipObj,'SOUR2:FUNC ARBITRARY');       % {sine, square, triangle, sawu,
 fprintf(tcpipObj,['SOUR1:TRAC:DATA:DATA ' waveform_ch_1])  % Send waveforms to Red Pitya
 fprintf(tcpipObj,['SOUR2:TRAC:DATA:DATA ' waveform_ch_2])
 
-fprintf(tcpipObj,'SOUR1:VOLT 0.7');             % Set amplitude of output signal
+fprintf(tcpipObj,'SOUR1:VOLT 1');             % Set amplitude of output signal
 fprintf(tcpipObj,'SOUR2:VOLT 1');
 
 fprintf(tcpipObj,'SOUR1:FREQ:FIX 4000');        % Set frequency of output signal
