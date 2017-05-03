@@ -25,7 +25,7 @@ yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
 figure(1)
 plot(t,yfinalamdemod,t,yfinalfmdemod);
 title('fmdemod and amdemod');
-legend('amdemod','fmdemod')
+legend('amdemod','fmdemod');
 figure(2)
 plot(t,yd,t,y)
 title('y and ydirectional');
