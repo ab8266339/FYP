@@ -1,7 +1,7 @@
 %Baseband Generator
 fcfm=1e4;%secondary carrier used for fm
 fs = 5e4;%sampling rate
-t = 0:1/fs:0.5;%signal length
+t = 0:1/fs:2;%signal length
 
 ys = [];
 D = 480;%Deviation for the first carrier
@@ -35,7 +35,7 @@ end
 % IQdataLowpass=doFilter2(IQData);
 yofm = fmmod(y,fcfm,fs,D);% y is omnidirectional
 yofmdemod=fmdemod(yofm,fcfm,fs,D);
-yd=sin(2*pi*30*t+degtorad(180));
+yd=sin(2*pi*30*t+degtorad(90));
 ydam=ammod(yd,fcam,fs);
 ydamdemod=amdemod(ydam,fcam,fs);
 yfinal=yofm+ydam;%yfinal is the final product after sinal mixing
