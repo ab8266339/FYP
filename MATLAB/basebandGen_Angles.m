@@ -32,17 +32,10 @@ title('y and ydirectional');
 legend('directional','ref');
 % figure(3)
 % plot(t,yfinalamdemod,t,yfinalamdemodfilter);
-figure(4)
-plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalamdemodfilter)))
-title('fft of yamdemod and yamdemod with filter');
 figure(5)
 plot(t,yfinalamdemod,t,yfinalamdemodfilter);
 title('yamdemod compare yamdemodfilter');
 legend('amdemod','amdemodfliter')
-figure(6)
-plot(t,yd,t,y,t,yfinalamdemod,t,yfinalfmdemod)
-title('yd y compare yamdemod yfmdemod');
-legend('yd','y','yam','yfm');
 figure(7)
 plot(t,yd,t,y,t,yfinalamdemodfilter,t,yfinalfmdemodfilter)
 title('yd y compare yamdemodfilter yfmdemodfilter');
