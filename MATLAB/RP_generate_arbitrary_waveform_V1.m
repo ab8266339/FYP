@@ -27,8 +27,9 @@ xaxis = 0:bin:bin*(length(t)-1);
 fm=fmmod(sin(2*pi*30*t),1000e3,125e6,480);
 %x=sin(t)+1/3*sin(3*t);
 am=ammod(sin(2*pi*300*t+degtorad(90)),1000e3,125e6);
-x=(fm+am)/2;
+%x=(fm+am)/2;
 y=am;
+x=fm;
 %x=x1+y;
 plot(t,x,t,y)
 grid on
@@ -54,8 +55,8 @@ fprintf(tcpipObj,['SOUR2:TRAC:DATA:DATA ' waveform_ch_2])
 fprintf(tcpipObj,'SOUR1:VOLT 1');             % Set amplitude of output signal
 fprintf(tcpipObj,'SOUR2:VOLT 1');
 
-fprintf(tcpipObj,'SOUR1:FREQ:FIX 7.6923e3');        % Set frequency of output signal
-fprintf(tcpipObj,'SOUR2:FREQ:FIX 3e3');
+fprintf(tcpipObj,'SOUR1:FREQ:FIX 1e6');        % Set frequency of output signal
+fprintf(tcpipObj,'SOUR2:FREQ:FIX 1e6');
 
 
 fprintf(tcpipObj,'OUTPUT1:STATE ON');
