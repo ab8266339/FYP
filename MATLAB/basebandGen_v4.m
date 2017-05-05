@@ -46,8 +46,13 @@ yfinalamdemodfilter=filter30hz(yfinalamdemod);
 yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
 
 figure(1)
+subplot(211)
 plot(t,yfinalamdemod,t,yfinalfmdemod);
-title('fmdemod and amdemod');
+title('fmdemod and amdemod in Time Domain');
+legend('amdemod','fmdemod')
+subplot(212)
+plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalfmdemod)));
+title('fmdemod and amdemod in Frequency Domain');
 legend('amdemod','fmdemod')
 figure(2)
 plot(t,yd,t,y)
@@ -70,4 +75,32 @@ figure(7)
 plot(t,yd,t,y,t,yfinalamdemodfilter,t,yfinalfmdemodfilter)
 title('yd y compare yamdemodfilter yfmdemodfilter');
 legend('yd','y','yamf','yfmf');
+figure(8)
+plot(xaxis,abs(fft(yfinal)))
+title('Spectrum of Baseband signal');
+figure(9)
+plot(t,yfinal)
+title('Waveform of Baseband signal');
 
+figure(10)
+subplot(221)
+plot(t,ydam);
+title('ydam in Time Domain');
+subplot(222)
+plot(t,yofm);
+title('yofm in Time Domain');
+subplot(223)
+plot(xaxis,abs(fft(ydam)))
+title('ydam in Frequency Domain');
+subplot(224)
+plot(xaxis,abs(fft(yofm)))
+title('yofm in Frequency Domain');
+figure(11)
+subplot(211)
+plot(t,yfinalamdemodfilter,t,yfinalfmdemodfilter);
+title('amdemodfiltered and fmdemodfiltered in Time Domain');
+legend('amdemodfilter','fmdemodfilter')
+subplot(212)
+plot(xaxis,abs(fft(yfinalamdemodfilter)),xaxis,abs(fft(yfinalfmdemodfilter)));
+title('amdemodfiltered and fmdemodfiltered in Frequency Domain');
+legend('amdemodfilter','fmdemodfilter')
