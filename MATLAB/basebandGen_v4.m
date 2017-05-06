@@ -39,7 +39,6 @@ yd=sin(2*pi*30*t+degtorad(90));
 ydam=ammod(yd,fcam,fs);
 ydamdemod=amdemod(ydam,fcam,fs);
 yfinal=yofm+ydam;%yfinal is the final product after sinal mixing
-% yfinal=doFilter9000hz(yfinal);
 yfinalamdemod=amdemod(yfinal,fcam,fs);
 yfinalfmdemod=fmdemod(yfinal,fcfm,fs,480);
 yfinalamdemodfilter=filter30hz(yfinalamdemod);
@@ -57,9 +56,11 @@ legend('amdemod','fmdemod')
 figure(2)
 plot(t,yd,t,y)
 title('y and ydirectional');
-legend('directional','ref');
-% figure(3)
-% plot(t,yfinalamdemod,t,yfinalamdemodfilter);
+legend('ref','directional');
+xlabel('Time(s)')
+ylabel('Amplitude')
+figure(3)
+plot(t,yfinalamdemod,t,yfinalamdemodfilter);
 figure(4)
 plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalamdemodfilter)))
 title('fft of yamdemod and yamdemod with filter');
@@ -81,7 +82,6 @@ title('Spectrum of Baseband signal');
 figure(9)
 plot(t,yfinal)
 title('Waveform of Baseband signal');
-
 figure(10)
 subplot(221)
 plot(t,ydam);

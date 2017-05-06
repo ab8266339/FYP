@@ -22,14 +22,19 @@ for r=1:length(phase);
         yfinalfmdemod=fmdemod(yfinal,fcfm,fs,D);
         yfinalamdemodfilter=filter30hz(yfinalamdemod);
         yfinalfmdemodfilter=filter30hz(yfinalfmdemod);
-        figure()
-        plot(t,yd,t,y)
-        title(['y and ydirectional of ',num2str(r)]);
-        legend(['directional phase ',num2str(r)],'ref');
+%         figure()
+%         plot(t,yd,t,y)
+%         title(['y and ydirectional of ',num2str(r)]);
+%         legend(['directional phase ',num2str(r)],'ref');
         figure()
         plot(t,yd,t,y,t,yfinalamdemodfilter,t,yfinalfmdemodfilter)
         title(['yd y compare yamdemodfilter yfmdemodfilter with ' num2str(r) 'Phase Difference']);
         legend(['yd of ',num2str(r)],'y','yamf','yfmf');
+        xlabel('Time(s)')
+        ylabel('Amplitude')
+        axis([0.1936 0.4 -1 1])
+
+        
         end
 end
 % figure(1)
@@ -37,5 +42,12 @@ end
 %         title('fmdemod and amdemod');
 %         legend('amdemod','fmdemod');
 % 
-
-
+% 
+% for r=1:18
+%     figure(r);
+%     xlabel('Time(s)')
+%     ylabel('Amplitude')
+%     axis([0.2 0.5 -1 1])
+%     findpeaks()
+%     r=r+1;
+% end 
