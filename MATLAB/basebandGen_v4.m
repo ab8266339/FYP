@@ -49,10 +49,14 @@ subplot(211)
 plot(t,yfinalamdemod,t,yfinalfmdemod);
 title('fmdemod and amdemod in Time Domain');
 legend('amdemod','fmdemod')
+xlabel('Time(s)');
+ylabel('Amplitude');
 subplot(212)
 plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalfmdemod)));
 title('fmdemod and amdemod in Frequency Domain');
 legend('amdemod','fmdemod')
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
 figure(2)
 plot(t,yd,t,y)
 title('y and ydirectional');
@@ -64,43 +68,83 @@ plot(t,yfinalamdemod,t,yfinalamdemodfilter);
 figure(4)
 plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalamdemodfilter)))
 title('fft of yamdemod and yamdemod with filter');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
 figure(5)
 plot(t,yfinalamdemod,t,yfinalamdemodfilter);
 title('yamdemod compare yamdemodfilter');
 legend('amdemod','amdemodfliter')
+xlabel('Time(s)');
+ylabel('Amplitude');
 figure(6)
 plot(t,yd,t,y,t,yfinalamdemod,t,yfinalfmdemod)
 title('yd y compare yamdemod yfmdemod');
 legend('yd','y','yam','yfm');
+xlabel('Time(s)');
+ylabel('Amplitude');
 figure(7)
 plot(t,yd,t,y,t,yfinalamdemodfilter,t,yfinalfmdemodfilter)
 title('yd y compare yamdemodfilter yfmdemodfilter');
 legend('yd','y','yamf','yfmf');
+xlabel('Time(s)');
+ylabel('Amplitude');
 figure(8)
 plot(xaxis,abs(fft(yfinal)))
 title('Spectrum of Baseband signal');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
 figure(9)
 plot(t,yfinal)
 title('Waveform of Baseband signal');
+xlabel('Time(s)');
+ylabel('Amplitude');
 figure(10)
 subplot(221)
 plot(t,ydam);
 title('ydam in Time Domain');
+xlabel('Time(s)');
+ylabel('Amplitude');
 subplot(222)
 plot(t,yofm);
 title('yofm in Time Domain');
+xlabel('Time(s)');
+ylabel('Amplitude');
 subplot(223)
 plot(xaxis,abs(fft(ydam)))
 title('ydam in Frequency Domain');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
 subplot(224)
 plot(xaxis,abs(fft(yofm)))
 title('yofm in Frequency Domain');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
 figure(11)
 subplot(211)
 plot(t,yfinalamdemodfilter,t,yfinalfmdemodfilter);
 title('amdemodfiltered and fmdemodfiltered in Time Domain');
 legend('amdemodfilter','fmdemodfilter')
+xlabel('Time(s)');
+ylabel('Amplitude');
 subplot(212)
 plot(xaxis,abs(fft(yfinalamdemodfilter)),xaxis,abs(fft(yfinalfmdemodfilter)));
 title('amdemodfiltered and fmdemodfiltered in Frequency Domain');
 legend('amdemodfilter','fmdemodfilter')
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+figure(12)
+subplot(211)
+plot(xaxis,abs(fft(yfinalamdemod)),xaxis,abs(fft(yfinalfmdemod)));
+title('amdemod and fmdemod in Frequency Domain');
+legend('amdemod','fmdemod')
+axis([0 360 0 6e4]);
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+subplot(212)
+plot(xaxis,abs(fft(yfinalamdemodfilter)),xaxis,abs(fft(yfinalfmdemodfilter)));
+title('amdemodfiltered and fmdemodfiltered in Frequency Domain');
+legend('amdemodfilter','fmdemodfilter')
+axis([0 360 0 7e3]);
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+

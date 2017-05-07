@@ -19,7 +19,7 @@ function y = fm_mod(x,Fc,Fs,freqdev)
 t = (0:1/Fs:((size(x,1)-1)/Fs))';
 t = t(:,ones(1,size(x,2)));
 int_x = cumsum(x)/Fs;
-y = cos(2*pi*(Fc+freqdev*int_x))*t; %subcarrier contain ref sig
+%y = cos(2*pi*(Fc+freqdev*int_x))*t; %subcarrier contain ref sig
 
 y = cos(2*pi*Fc*t + 2*pi*freqdev*int_x );   
 
